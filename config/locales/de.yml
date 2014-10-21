@@ -1,0 +1,7 @@
+de:
+  pageflow:
+    text_page:
+      page_type_name: "Text Seite"
+  activerecord:
+    attributes:
+      "pageflow/page":
