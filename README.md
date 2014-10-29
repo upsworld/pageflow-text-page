@@ -25,21 +25,7 @@ Include javascripts and stylesheets:
     # app/assets/stylesheets/pageflow/application.css.scss
     @import "pageflow/text_page";
 
-Mount the routes in `config/routes.rb`:
-
-    authenticated do
-      mount Pageflow::TextPage::Engine, :at => '/text_page'
-    end
-
-Install dependencies:
-
-    bundle install
-
-Migrate the database:
-
-    bundle exec rake db:migrate
-
-Restart the application server.
+Execute `bundle install` Restart the application server.
 
 ## Troubleshooting
 

@@ -1,6 +1,5 @@
-/*global IScroll*/
-
 pageflow.pageType.register('text_page', _.extend({
+
   prepareNextPageTimeout: 0,
 
   enhance: function(pageElement, configuration) {},
@@ -39,11 +38,6 @@ pageflow.pageType.register('text_page', _.extend({
       '.background_image': {
         view: pageflow.BackgroundImageEmbeddedView,
         options: {propertyName: 'background_image_id'}
-      },
-
-      '.text-page': {
-        view: pageflow.textPage.ListEmbeddedView,
-        options: {propertyName: 'linked_text_page_perma_ids'}
       }
     };
   }

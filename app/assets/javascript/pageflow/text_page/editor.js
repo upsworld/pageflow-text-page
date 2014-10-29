@@ -1,12 +1,24 @@
 //= require_self
-
-//= require_tree ./editor/models
-//= require_tree ./editor/collections
-//= require_tree ./editor/routers
-//= require_tree ./editor/controllers
-//= require_tree ./editor/templates
-//= require_tree ./editor/views
-
-//= require ./editor/config
+//= require ./editor/text_page_embedded_view
 
 pageflow.textPage = pageflow.textPage || {};
+
+pageflow.ConfigurationEditorView.register('text_page', {
+  configure: function () {
+    this.tab('general', function () {
+      this.group('general');
+    });
+
+    this.tab('files', function () {
+      this.input('background_image_id', pageflow.FileInputView, {collection: pageflow.imageFiles});
+      this.input('thumbnail_image_id', pageflow.FileInputView, {
+        collection: pageflow.imageFiles,
+        imagePositioning: false
+      });
+    });
+
+    this.tab('options', function () {
+      this.group('options');
+    });
+  }
+});
