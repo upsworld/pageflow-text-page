@@ -1,23 +1,50 @@
 <div class="blackLayer"></div>
-<div class="content_and_background textPage">
-
-  <div class="content">
-    <div class="scroller">
-      <div>
-        <div class="contentWrapper">
+<div class="content_and_background text-page text_position_bottom">
+  <div class="backgroundArea dim parallax">
+    <%= background_image_div(configuration, 'background_image') %>
+    <%= shadow_div :opacity => configuration['gradient_opacity'] %>
+    <div class="fixedHeaderArea">
+      <div class="pageHeaderWrapper">
+        <div class="page_header">
+          <h2>
+            <span class="tagline"><%= configuration['tagline'] %></span>
+            <span class="title"><%= configuration['title'] %></span>
+            <span class="subtitle"><%= configuration['subtitle'] %></span>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content scroller">
+    <div>
+      <div class="contentWrapper">
+        <div class="page_spacer"></div>
+        <div class="contentInnerWrapper">
+          <div class="content-background-layer"></div>
           <div class="page_header">
+            <div class="header-background-layer"></div>
             <h2>
               <span class="tagline"><%= configuration['tagline'] %></span>
               <span class="title"><%= configuration['title'] %></span>
               <span class="subtitle"><%= configuration['subtitle'] %></span>
             </h2>
-            <%= background_image_tag(configuration['background_image_id'], {:class => "print_image"}) %>
+            <%= background_image_tag(configuration['background_image_id'], {"class" => "print_image"}) %>
           </div>
           <div class="contentText">
-            <p><%= raw configuration['text'] %></p>
+          <h3>
+            <span class="text-title">Dies ist eine weitere Überschrift</span>
+          </h3>
+          <div class="inline-image">
+            <img src="http://de-codevise-pageflow-hr-development.s3-website-eu-west-1.amazonaws.com/macs-mac-pro.bonn.codevise.de/image_files/processed_attachments/000/000/002/v1/medium/Dubai7.JPG?1413905453">
+            <div class="inline-image-text"><span>Dies ist eine Bildunterschrift. Sie sollte nicht zu lang sein.</span></div>
+          </div>
+            <p>
+              <%= raw configuration['text'] %>
+            </p>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div class="inline-image out-of-scroller" style="background-image: url('http://de-codevise-pageflow-hr-development.s3-website-eu-west-1.amazonaws.com/macs-mac-pro.bonn.codevise.de/image_files/processed_attachments/000/000/002/v1/medium/Dubai7.JPG?1413905453'); background-size: cover"></div>
 </div>

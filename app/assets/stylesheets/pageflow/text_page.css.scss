@@ -1,3 +1,338 @@
 @include pageflow-page-type(text_page);
 
-.text-page { }
+$nav-bar-margin: 85px;
+
+$inverted-background-color: black;
+
+.page .text-page, .js .page .text-page {
+
+  .backgroundArea {
+
+    .fixedHeaderArea {
+      position: absolute;
+      width: 100%;
+      .pageHeaderWrapper {
+        padding: 200px 0 5% 8%;
+        width: 75%;
+        @include mobile {
+          padding: 85px 12% 5% 8%;
+          width: 100%;
+        }
+
+        .page_header {
+
+          h2 {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .scroller {
+    > div {
+      padding: 0;
+      position: relative;
+
+      width: auto;
+
+      .contentInnerWrapper {
+        position: relative;
+        color: black;
+        /*font-size: 0.8em; */
+
+        .content-background-layer {
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          content: "";
+          display: block;
+          background-color: white;
+          z-index: -1;
+        }
+
+        .page_header {
+          position: absolute;
+          bottom: 100%;
+          width: 100%;
+          color: white;
+          display: none;
+
+          h2 {
+            text-align:center;
+            padding: 2em 0;
+            margin: 0;
+            span {
+              margin: 0 auto;
+            }
+
+            padding-right: $nav-bar-margin;
+
+            @include pad_portrait {
+              padding-right: 0;
+            }
+
+          }
+
+          .header-background-layer {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: black;
+            opacity: 1;
+            z-index: -1;
+          }
+        }
+
+        .contentText > * {
+          margin: 0 auto;
+        }
+
+        .contentText {
+          font-size: 0.8em;
+          max-width: 500px;
+          margin: auto;
+          min-height: 300px;
+          padding: 6em 0;
+
+          @include phone {
+            max-width: 90%;
+            font-size: 1em;
+          }
+
+          padding-right: $nav-bar-margin;
+
+          @include pad_portrait {
+            padding-right: 0;
+          }
+
+          h3 {
+            width: 100%;
+            padding-bottom: 2em;
+            font-size: 1.5em;
+          }
+
+          @include pad_portrait {
+            padding-right: 0;
+          }
+
+          .inline-image {
+            width: 300px;
+            height: auto;
+            background-size: cover;
+            background-position: center;
+            float: right;
+            margin-left: 30px;
+            margin-top: 0px;
+            margin-bottom: 30px;
+            margin-right: -80px;
+
+            @include phone {
+              float: none;
+              width: 100%;
+              margin: 1em 0;
+            }
+
+
+            img {
+              width: 100%;
+              height: auto;
+              display:block;
+            }
+            div {
+              background-color: black;
+              width: auto;
+              color: white;
+
+              span {
+                padding: 10px;
+                display: block;
+              }
+            }
+          }
+          p {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.text_position_bottom {
+
+  .shadow {
+    display: none !important;
+  }
+  .fixedHeaderArea {
+    display: none !important;
+  }
+  .contentInnerWrapper .page_header {
+    display: block !important;
+  }
+}
+
+.text_position_right {
+  .inline-image {
+    float: left !important;
+    margin-left: -80px !important;
+    margin-right: 30px !important;
+  }
+}
+
+.invert {
+
+  .contentInnerWrapper {
+
+    .page_header {
+      border-bottom: 1px solid rgb(216, 216, 216);
+
+      h2 {
+        color: black;
+      }
+    }
+  }
+
+  .header-background-layer {
+    background-color: white !important;
+  }
+}
+
+
+.inline-image.out-of-scroller {
+  width: 260px;
+  height: 260px;
+  background-size: cover;
+  background-position: center;
+  margin-left: 30px;
+  margin-top: 0px;
+  margin-bottom: 30px;
+  margin-right: -80px;
+  display: none;
+  position: fixed;
+  right: 10%;
+  top: 50%;
+  z-index: 1;
+}
+
+.narrow_background  {
+  .content-background-layer, .header-background-layer {
+    width: 800px !important;
+    left: 50% !important;
+    margin-left: -400px;
+  }
+  .contentInnerWrapper .contentText .inline-image {
+    margin-right: 0 !important;
+  }
+
+  &.text_position_right {
+    .contentInnerWrapper .contentText .inline-image {
+      margin-left: 0 !important;
+    }
+  }
+}
+.transparent_background  {
+  .content-background-layer, .header-background-layer {
+    opacity: 0.9 !important;
+  }
+}
+
+.slideshow section.fade.text-page {
+
+  .blackLayer {
+    display: none;
+  }
+  .backgroundArea {
+    background-color: black;
+    -webkit-backface-visibility: hidden;
+    opacity: 1;
+  }
+
+  &.invert .backgroundArea {
+    background-color: white;
+  }
+
+  .content_and_background {
+    @include transition(1s ease);
+  }
+
+  &.active.animate-in-forwards .content_and_background {
+    opacity: 1;
+  }
+
+  &.animate-in-forwards .content_and_background {
+    opacity: 0;
+  }
+  &.animate-out-forwards .content_and_background {
+    opacity: 1;
+  }
+  &.animate-in-backwards .content_and_background{
+    opacity: 1;
+  }
+  &.animate-out-backwards .content_and_background{
+    opacity: 0;
+  }
+
+  &.active.animate-in-forwards .backgroundArea {
+    opacity: 1;
+  }
+
+  &.animate-in-forwards .backgroundArea {
+    opacity: 1;
+  }
+  &.animate-out-forwards .backgroundArea{
+    opacity: 1;
+  }
+  &.animate-in-backwards .backgroundArea{
+    opacity: 1;
+  }
+  &.animate-out-backwards .backgroundArea{
+    opacity: 1;
+  }
+
+  div.content {
+    @include transition(1s ease);
+    -webkit-backface-visibility: hidden;
+    @include transform(translate3d(0,0,0));
+  }
+
+  &.active.animate-in-forwards div.content {
+    opacity: 1;
+    pointer-events: none;
+    @include transform(translate3d(0,0,0));
+  }
+
+  &.animate-in-forwards {
+    div.content {
+      pointer-events: none;
+      opacity: 1;
+      @include transform(translate3d(0,0,0));
+    }
+  }
+  &.animate-out-forwards {
+    div.content {
+      opacity: 1;
+      pointer-events: none;
+      @include transform(translate3d(0,0,0));
+    }
+  }
+  &.animate-in-backwards {
+    .content {
+      opacity: 1;
+      pointer-events: none;
+      @include transform(translate3d(0,0,0));
+    }
+  }
+  &.animate-out-backwards {
+    .content {
+      opacity: 1;
+      pointer-events: none;
+      @include transform(translate3d(0,0,0));
+    }
+  }
+}
