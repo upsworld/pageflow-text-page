@@ -5,3 +5,24 @@ de:
   activerecord:
     attributes:
       "pageflow/page":
+        text_title: Texttitel
+        title_position: Titelposition
+        text_titel: Überschrift
+        text_coverage: Textabdeckung
+        image_description: Bildunterschrift
+        text_image_id: Bild im Text
+        invert_title: Farben invertieren (Titel)
+        invert_text: Farben invertieren (Text)
+
+        paralax: Paralax
+        dim: Abblenden
+    values:
+      "pageflow/page":
+        title_position:
+          left: Links
+          right: Rechts
+          center: Zentriert
+        text_coverage:
+          title-only: Nur Titel
+          extend-into: Text ragt hinein
+          banner: Banner

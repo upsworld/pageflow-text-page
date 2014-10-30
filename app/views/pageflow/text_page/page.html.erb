@@ -35,8 +35,10 @@
             <span class="text-title">Dies ist eine weitere Überschrift</span>
           </h3>
           <div class="inline-image">
-            <img src="http://de-codevise-pageflow-hr-development.s3-website-eu-west-1.amazonaws.com/macs-mac-pro.bonn.codevise.de/image_files/processed_attachments/000/000/002/v1/medium/Dubai7.JPG?1413905453">
-            <div class="inline-image-text"><span>Dies ist eine Bildunterschrift. Sie sollte nicht zu lang sein.</span></div>
+            <%= content_image(configuration['text_image_id'], configuration['image_description']) %>
+            <% if configuration['image_description'] %>
+              <div class="inline-image-text"><span><%= configuration['image_description'] %></span></div>
+            <% end -%>
           </div>
             <p>
               <%= raw configuration['text'] %>

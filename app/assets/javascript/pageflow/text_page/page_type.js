@@ -64,9 +64,22 @@ pageflow.pageType.register('text_page', _.extend({
     pageElement.find('h2 .tagline').text(configuration.get('tagline') || '');
     pageElement.find('h2 .title').text(configuration.get('title') || '');
     pageElement.find('h2 .subtitle').text(configuration.get('subtitle') || '');
+    pageElement.find('.contentText .text-title').text(configuration.get('text_title') || '');
     pageElement.find('.contentText p').html(configuration.get('text') || '');
 
     this.updateCommonPageCssClasses(pageElement, configuration);
+
+    _.forEach(pageflow.textPage.titlePositions, function(position) {
+      pageElement.toggleClass('title_position_' + position, configuration.get('title_position') === position);
+    });
+
+    _.forEach(pageflow.Page.textPositions, function(position) {
+      pageElement.toggleClass('text_position_' + position, configuration.get('text_position') === position);
+    });
+
+    _.forEach(pageflow.textPage.textCoverageOptions, function(option) {
+      pageElement.toggleClass(option, configuration.get('text_coverage') === option);
+    });
 
     pageElement.find('.shadow').css({
       opacity: configuration.get('gradient_opacity') / 100
@@ -78,6 +91,13 @@ pageflow.pageType.register('text_page', _.extend({
       '.background_image': {
         view: pageflow.BackgroundImageEmbeddedView,
         options: {propertyName: 'background_image_id'}
+      },
+      '.inline-image': {
+        view: pageflow.textPage.ContentImageEmbeddedView,
+        options: {
+          imagePropertyName: 'text_image_id',
+          descriptionPropertyName: 'image_description'
+        }
       }
     };
   }
