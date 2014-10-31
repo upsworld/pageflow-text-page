@@ -14,8 +14,8 @@ de:
         invert_title: Farben invertieren (Titel)
         invert_text: Farben invertieren (Text)
 
-        paralax: Paralax
-        dim: Abblenden
+        topasset_parallax: Parallax
+        topasset_dim: Abblenden
     values:
       "pageflow/page":
         title_position:
@@ -23,6 +23,6 @@ de:
           right: Rechts
           center: Zentriert
         text_coverage:
-          title-only: Nur Titel
-          extend-into: Text ragt hinein
+          title_only: Nur Titel
+          extend_into: Text ragt hinein
           banner: Banner

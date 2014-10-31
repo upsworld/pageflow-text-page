@@ -4,7 +4,7 @@ $nav-bar-margin: 85px;
 
 $inverted-background-color: black;
 
-.page .text-page, .js .page .text-page {
+.page.text-page, .js .page.text-page {
 
   .backgroundArea {
 
@@ -99,6 +99,7 @@ $inverted-background-color: black;
           margin: auto;
           min-height: 300px;
           padding: 6em 0;
+          box-sizing: border-box;
 
           @include phone {
             max-width: 90%;
@@ -167,7 +168,7 @@ $inverted-background-color: black;
   }
 }
 
-.text_position_bottom {
+.text_position_center {
 
   .shadow {
     display: none !important;
@@ -180,7 +181,7 @@ $inverted-background-color: black;
   }
 }
 
-.text_position_right {
+.inline_text_position_right {
   .inline-image {
     float: left !important;
     margin-left: -80px !important;
@@ -203,6 +204,19 @@ $inverted-background-color: black;
 
   .header-background-layer {
     background-color: white !important;
+  }
+}
+
+.page.text-page.invert-textarea, .js .page.text-page.invert-textarea {
+  .scroller {
+    > div {
+      .contentInnerWrapper {
+        color: white;
+      }
+      .content-background-layer {
+        background-color: black;
+      }
+    }
   }
 }
 

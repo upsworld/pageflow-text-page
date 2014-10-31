@@ -12,7 +12,6 @@ pageflow.textPage.ContentImageEmbeddedView = Backbone.Marionette.View.extend({
   },
 
   update: function() {
-    console.log('baam');
 
     var image = this.model.getImageFileUrl(this.options.imagePropertyName);
     var description = this.model.get(this.options.descriptionPropertyName);

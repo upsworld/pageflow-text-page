@@ -1,5 +1,5 @@
 <div class="blackLayer"></div>
-<div class="content_and_background text-page text_position_bottom">
+<div class="content_and_background">
   <div class="backgroundArea dim parallax">
     <%= background_image_div(configuration, 'background_image') %>
     <%= shadow_div :opacity => configuration['gradient_opacity'] %>
@@ -22,7 +22,7 @@
         <div class="contentInnerWrapper">
           <div class="content-background-layer"></div>
           <div class="page_header">
-            <div class="header-background-layer"></div>
+            <div class="header-background-layer" style="opacity: <%= configuration['gradient_opacity'] %>"></div>
             <h2>
               <span class="tagline"><%= configuration['tagline'] %></span>
               <span class="title"><%= configuration['title'] %></span>

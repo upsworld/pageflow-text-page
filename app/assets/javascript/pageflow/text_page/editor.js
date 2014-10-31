@@ -11,14 +11,13 @@ pageflow.ConfigurationEditorView.register('text_page', {
       this.input('tagline', pageflow.TextInputView);
       this.input('subtitle', pageflow.TextInputView);
       this.input('title_position', pageflow.SelectInputView, {values: pageflow.textPage.titlePositions});
-
+      this.input('gradient_opacity', pageflow.SliderInputView);
+      this.input('invert', pageflow.CheckBoxInputView);
       this.input('text_title', pageflow.TextInputView);
       this.input('text', pageflow.TextAreaInputView);
       this.input('text_position', pageflow.SelectInputView, {values: pageflow.Page.textPositions});
       this.input('text_coverage', pageflow.SelectInputView, {values: pageflow.textPage.textCoverageOptions});
       this.input('image_description', pageflow.TextInputView);
-
-      this.input('invert_title', pageflow.CheckBoxInputView);
       this.input('invert_text', pageflow.CheckBoxInputView);
     });
 
@@ -35,8 +34,8 @@ pageflow.ConfigurationEditorView.register('text_page', {
     });
 
     this.tab('options', function () {
-      this.input('paralax', pageflow.CheckBoxInputView);
-      this.input('dim', pageflow.CheckBoxInputView);
+      this.input('topasset_parallax', pageflow.CheckBoxInputView);
+      this.input('topasset_dim', pageflow.CheckBoxInputView);
       this.group('options');
     });
   }
