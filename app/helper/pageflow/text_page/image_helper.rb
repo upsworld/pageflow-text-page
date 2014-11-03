@@ -4,7 +4,7 @@ module Pageflow
       def content_image(id, alt, format = :medium)
         image = Pageflow::ImageFile.find_by_id(id)
         if image
-          image_tag.attachment.url(:medium)
+          image_tag(image.attachment.url(:medium))
         else
           ''
         end

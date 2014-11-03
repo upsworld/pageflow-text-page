@@ -3,7 +3,6 @@ pageflow.pageType.register('text_page', _.extend({
   prepareNextPageTimeout: 0,
 
   enhance: function(pageElement, configuration) {
-    pageElement.addClass('text-page');
     this.content = pageElement.find('.scroller');
     this.pageSpacerElement = pageElement.find('.page_spacer');
     this.contentArea = pageElement.find('.contentText');
@@ -20,7 +19,7 @@ pageflow.pageType.register('text_page', _.extend({
     var spacerPageRatio = this.pageSpacerElement.height() / pageElement.height();
     var y = this.content.scroller('positionY');
 
-    pageElement.find('.backgroundArea .fixedHeaderArea').css('opacity', (0.5 * pageElement.height() + y)/(pageElement.height() * 0.5)); // Abblenden des Titels, immer*/
+    pageElement.find('.backgroundArea .fixed_header_area').css('opacity', (0.5 * pageElement.height() + y)/(pageElement.height() * 0.5)); // Abblenden des Titels, immer*/
 
     if(configuration.topasset_dim) {
       pageElement.find('.backgroundArea .background').css('opacity', (spacerPageRatio * pageElement.height() + y)/(pageElement.height() * spacerPageRatio)); // Abblenden */
@@ -83,30 +82,31 @@ pageflow.pageType.register('text_page', _.extend({
   deactivated: function(pageElement, configuration) {},
 
   update: function(pageElement, configuration) {
+    pageElement.attr('data-template', 'text_page');
     pageElement.find('h2 .tagline').text(configuration.get('tagline') || '');
     pageElement.find('h2 .title').text(configuration.get('title') || '');
     pageElement.find('h2 .subtitle').text(configuration.get('subtitle') || '');
-    pageElement.find('.contentText .text-title').text(configuration.get('text_title') || '');
+    pageElement.find('.contentText .text_title').text(configuration.get('text_title') || '');
     pageElement.find('.contentText p').html(configuration.get('text') || '');
 
     this.updateCommonPageCssClasses(pageElement, configuration);
 
     _.forEach(pageflow.textPage.titlePositions, function(position) {
-      pageElement.toggleClass('text_position_' + position, configuration.get('title_position') === position);
+      pageElement.find('.content_and_background').toggleClass('title_position_' + position, configuration.get('title_position') === position);
     });
 
     _.forEach(pageflow.Page.textPositions, function(position) {
-      pageElement.toggleClass('inline_text_position_' + position, configuration.get('text_position') === position);
+      pageElement.find('.content').toggleClass('inline_text_position_' + position, configuration.get('text_position') === position);
     });
 
     _.forEach(pageflow.textPage.textCoverageOptions, function(option) {
       pageElement.toggleClass(option, configuration.get('text_coverage') === option);
     });
 
-    pageElement.toggleClass('invert-textarea', !!configuration.get('invert_text'));
+    pageElement.find('.content').toggleClass('invert_text', !!configuration.get('invert_text'));
     pageElement.data('invertIndicator', !configuration.get('invert_text'));
 
-    pageElement.find('.shadow, .header-background-layer').css({
+    pageElement.find('.shadow, .header_background_layer').css({
       opacity: configuration.get('gradient_opacity') / 100
     });
 
@@ -120,7 +120,7 @@ pageflow.pageType.register('text_page', _.extend({
         view: pageflow.BackgroundImageEmbeddedView,
         options: {propertyName: 'background_image_id'}
       },
-      '.inline-image': {
+      '.inline_image': {
         view: pageflow.textPage.ContentImageEmbeddedView,
         options: {
           imagePropertyName: 'text_image_id',

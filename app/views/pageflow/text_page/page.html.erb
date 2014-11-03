@@ -1,10 +1,10 @@
 <div class="blackLayer"></div>
-<div class="content_and_background">
-  <div class="backgroundArea dim parallax">
+<div class="content_and_background text_page title_position_<%= configuration['title_position'] %>">
+  <div class="backgroundArea">
     <%= background_image_div(configuration, 'background_image') %>
     <%= shadow_div :opacity => configuration['gradient_opacity'] %>
-    <div class="fixedHeaderArea">
-      <div class="pageHeaderWrapper">
+    <div class="fixed_header_area">
+      <div class="page_header_wrapper">
         <div class="page_header">
           <h2>
             <span class="tagline"><%= configuration['tagline'] %></span>
@@ -15,14 +15,14 @@
       </div>
     </div>
   </div>
-  <div class="content scroller">
+  <div class="content scroller inline_text_position_<%= configuration['text_position'] %> <% if configuration['invert_text'] %>invert_text<% end %>">
     <div>
       <div class="contentWrapper">
         <div class="page_spacer"></div>
         <div class="contentInnerWrapper">
-          <div class="content-background-layer"></div>
+          <div class="content_background_layer"></div>
           <div class="page_header">
-            <div class="header-background-layer" style="opacity: <%= configuration['gradient_opacity'] %>"></div>
+            <div class="header_background_layer" style="opacity: <%= configuration['gradient_opacity'] %>"></div>
             <h2>
               <span class="tagline"><%= configuration['tagline'] %></span>
               <span class="title"><%= configuration['title'] %></span>
@@ -32,13 +32,13 @@
           </div>
           <div class="contentText">
             <h3>
-              <span class="text-title">Dies ist eine weitere Überschrift</span>
+              <span class="text_title"><%= configuration['text_title'] %></span>
             </h3>
-            <div class="inline-image">
+            <div class="inline_image <% if !configuration['text_image_id'] %>no_image_assigned<% end %>">
               <%= content_image(configuration['text_image_id'], configuration['image_description']) %>
               <% if configuration['image_description'] %>
-                <div class="inline-image-text"><span><%= configuration['image_description'] %></span></div>
-                <% end -%>
+                <div class="inline_image_text"><span><%= configuration['image_description'] %></span></div>
+              <% end %>
             </div>
             <p>
               <%= raw configuration['text'] %>
@@ -48,5 +48,4 @@
       </div>
     </div>
   </div>
-  <div class="inline-image out-of-scroller" style="background-image: url('http://de-codevise-pageflow-hr-development.s3-website-eu-west-1.amazonaws.com/macs-mac-pro.bonn.codevise.de/image_files/processed_attachments/000/000/002/v1/medium/Dubai7.JPG?1413905453'); background-size: cover"></div>
 </div>

@@ -16,6 +16,8 @@ pageflow.textPage.ContentImageEmbeddedView = Backbone.Marionette.View.extend({
     var image = this.model.getImageFileUrl(this.options.imagePropertyName);
     var description = this.model.get(this.options.descriptionPropertyName);
 
+    this.$el.toggleClass('no_image_assigned', !image);
+
     if (image) {
       if(!this.img || this.img.length === 0) {
         this.img = $('<img/>');
@@ -48,7 +50,7 @@ pageflow.textPage.ContentImageEmbeddedView = Backbone.Marionette.View.extend({
     if (description) {
       if(!this.text) {
         this.text = $('<div/>')
-          .addClass('inline-image-text')
+          .addClass('inline_image_text')
           .append($('<span/>'));
         this.$el.append(this.text);
       }
