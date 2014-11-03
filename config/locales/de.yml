@@ -2,6 +2,11 @@ de:
   pageflow:
     text_page:
       page_type_name: "Text Seite"
+
+  editor:
+    configuration_editor:
+      tabs:
+        content: "Fließtext"
   activerecord:
     attributes:
       "pageflow/page":

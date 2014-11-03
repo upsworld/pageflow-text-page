@@ -13,21 +13,25 @@ pageflow.ConfigurationEditorView.register('text_page', {
       this.input('title_position', pageflow.SelectInputView, {values: pageflow.textPage.titlePositions});
       this.input('gradient_opacity', pageflow.SliderInputView);
       this.input('invert', pageflow.CheckBoxInputView);
+    });
+
+    this.tab('content', function () {
+      this.input('text_coverage', pageflow.SelectInputView, {values: pageflow.textPage.textCoverageOptions});
       this.input('text_title', pageflow.TextInputView);
       this.input('text', pageflow.TextAreaInputView);
-      this.input('text_position', pageflow.SelectInputView, {values: pageflow.Page.textPositions});
-      this.input('text_coverage', pageflow.SelectInputView, {values: pageflow.textPage.textCoverageOptions});
-      this.input('image_description', pageflow.TextInputView);
       this.input('invert_text', pageflow.CheckBoxInputView);
+
+      this.input('text_image_id', pageflow.FileInputView, {
+        collection: pageflow.imageFiles,
+        imagePositioning: false
+      });
+      this.input('image_description', pageflow.TextInputView);
+      this.input('text_position', pageflow.SelectInputView, {values: pageflow.Page.textPositions});
     });
 
     this.tab('files', function () {
       this.input('background_image_id', pageflow.FileInputView, {collection: pageflow.imageFiles});
       this.input('thumbnail_image_id', pageflow.FileInputView, {
-        collection: pageflow.imageFiles,
-        imagePositioning: false
-      });
-      this.input('text_image_id', pageflow.FileInputView, {
         collection: pageflow.imageFiles,
         imagePositioning: false
       });
