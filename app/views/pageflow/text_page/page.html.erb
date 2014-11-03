@@ -31,15 +31,15 @@
             <%= background_image_tag(configuration['background_image_id'], {"class" => "print_image"}) %>
           </div>
           <div class="contentText">
-          <h3>
-            <span class="text-title">Dies ist eine weitere Überschrift</span>
-          </h3>
-          <div class="inline-image">
-            <%= content_image(configuration['text_image_id'], configuration['image_description']) %>
-            <% if configuration['image_description'] %>
-              <div class="inline-image-text"><span><%= configuration['image_description'] %></span></div>
-            <% end -%>
-          </div>
+            <h3>
+              <span class="text-title">Dies ist eine weitere Überschrift</span>
+            </h3>
+            <div class="inline-image">
+              <%= content_image(configuration['text_image_id'], configuration['image_description']) %>
+              <% if configuration['image_description'] %>
+                <div class="inline-image-text"><span><%= configuration['image_description'] %></span></div>
+                <% end -%>
+            </div>
             <p>
               <%= raw configuration['text'] %>
             </p>
