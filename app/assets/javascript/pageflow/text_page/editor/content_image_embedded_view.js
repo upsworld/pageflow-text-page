@@ -39,8 +39,10 @@ pageflow.textPage.ContentImageEmbeddedView = Backbone.Marionette.View.extend({
         this.defaultImage = null;
       }
 
-      this.img.remove();
-      this.img = null;
+      if (this.img) {
+        this.img.remove();
+        this.img = null;
+      }
     }
 
     if (description) {
@@ -53,7 +55,7 @@ pageflow.textPage.ContentImageEmbeddedView = Backbone.Marionette.View.extend({
 
       this.text.find('span').html(description);
     }
-    else {
+    else if (this.text) {
       this.text.remove();
       this.text = null;
     }
