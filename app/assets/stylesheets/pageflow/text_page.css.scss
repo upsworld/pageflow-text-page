@@ -159,7 +159,8 @@ $inverted-background-color: black;
             @include phone {
               float: none;
               width: 100%;
-              margin: 1em 0;
+              max-width: 500px;
+              margin: 1em auto;
             }
 
             .default-image {
