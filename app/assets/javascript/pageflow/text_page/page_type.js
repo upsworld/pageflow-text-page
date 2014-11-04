@@ -92,7 +92,7 @@ pageflow.pageType.register('text_page', _.extend({
     this.updateCommonPageCssClasses(pageElement, configuration);
 
     _.forEach(pageflow.textPage.titlePositions, function(position) {
-      pageElement.find('.content_and_background').toggleClass('title_position_' + position, configuration.get('title_position') === position);
+      pageElement.find('.content_and_background').toggleClass('text_position_' + position, configuration.get('title_position') === position);
     });
 
     _.forEach(pageflow.Page.textPositions, function(position) {

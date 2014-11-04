@@ -6,6 +6,25 @@ $inverted-background-color: black;
 
 .page[data-template="text_page"], .js .page[data-template="text_page"] {
 
+  .shadow {
+    @include shadow(#000);
+    pointer-events: none;
+  }
+  &.invert {
+    .shadow {
+      @include shadow(#fff);
+    }
+  }
+  .text_position_right .shadow {
+    @include shadow-right(#000);
+  }
+  &.invert .text_position_right  {
+    .shadow {
+      @include shadow-right(#fff);
+    }
+  }
+
+
   .backgroundArea {
 
     .fixed_header_area {
@@ -172,7 +191,7 @@ $inverted-background-color: black;
   }
 }
 
-.title_position_center, .text_position_right .title_position_center {
+.text_position_center, .text_position_right .text_position_center {
   .shadow {
     display: none !important;
   }
