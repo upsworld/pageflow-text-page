@@ -124,7 +124,7 @@ pageflow.pageType.register('text_page', _.extend({
       opacity: configuration.get('gradient_opacity') / 100
     });
 
-    this.resizePageSpacer(pageElement, configuration);
+    this.resizePageSpacer(pageElement, configuration.attributes);
     this.applyBackgroundEffects(pageElement, configuration.attributes);
   },
 
