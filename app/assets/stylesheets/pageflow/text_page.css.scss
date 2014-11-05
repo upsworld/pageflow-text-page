@@ -118,7 +118,7 @@ $inverted-background-color: black;
           margin: auto;
           min-height: 300px;
           padding: 6em 0;
-          box-sizing: border-box;
+          box-sizing: content-box;
 
           @include phone {
             max-width: 90%;

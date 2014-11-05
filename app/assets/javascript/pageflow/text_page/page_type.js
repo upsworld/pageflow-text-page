@@ -7,7 +7,13 @@ pageflow.pageType.register('text_page', _.extend({
     this.pageSpacerElement = pageElement.find('.page_spacer');
     this.contentArea = pageElement.find('.contentText');
     this.backgroundArea = pageElement.find('.background');
-    this.titleArea = pageElement.find('.contentInnerWrapper .page_header');
+
+    if(configuration.title_position == "left" || configuration.title_position == "right") {
+      this.titleArea = pageElement.find('.backgroundArea .fixed_header_area');
+    }
+    else {
+      this.titleArea = pageElement.find('.contentInnerWrapper .page_header');
+    }
 
     this.resizePageSpacer(pageElement, configuration);
 
@@ -39,10 +45,11 @@ pageflow.pageType.register('text_page', _.extend({
   },
 
   resizePageSpacer: function(pageElement, configuration) {
-    if (pageElement.hasClass('banner')) {
-      this.pageSpacerElement.css('height', pageElement.height() / 3 + this.titleArea.height() + 'px');
+    if (configuration.text_coverage == 'banner') {
+      var bannerHeight = this.titleArea.outerHeight() > pageElement.height() / 3 ? this.titleArea.outerHeight() : pageElement.height() / 3;
+      this.pageSpacerElement.css('height', bannerHeight + 'px');
     }
-    else if (pageElement.hasClass('title_only')) {
+    else if (configuration.text_coverage = 'title_only') {
       this.pageSpacerElement.css('height', pageElement.height() + 'px');
     }
     else {
@@ -88,6 +95,13 @@ pageflow.pageType.register('text_page', _.extend({
     pageElement.find('h2 .subtitle').text(configuration.get('subtitle') || '');
     pageElement.find('.contentText .text_title').text(configuration.get('text_title') || '');
     pageElement.find('.contentText p').html(configuration.get('text') || '');
+
+    if(configuration.get('title_position') == "left" || configuration.get('title_position') == "right") {
+      this.titleArea = pageElement.find('.backgroundArea .fixed_header_area');
+    }
+    else {
+      this.titleArea = pageElement.find('.contentInnerWrapper .page_header');
+    }
 
     this.updateCommonPageCssClasses(pageElement, configuration);
 
