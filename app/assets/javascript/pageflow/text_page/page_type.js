@@ -49,7 +49,7 @@ pageflow.pageType.register('text_page', _.extend({
       var bannerHeight = this.titleArea.outerHeight() > pageElement.height() / 3 ? this.titleArea.outerHeight() : pageElement.height() / 3;
       this.pageSpacerElement.css('height', bannerHeight + 'px');
     }
-    else if (configuration.text_coverage = 'title_only') {
+    else if (configuration.text_coverage == 'title_only') {
       this.pageSpacerElement.css('height', pageElement.height() + 'px');
     }
     else {
