@@ -6,6 +6,7 @@ de:
   editor:
     configuration_editor:
       tabs:
+        header: "Titelbereich"
         content: "Fließtext"
   activerecord:
     attributes:
@@ -18,16 +19,19 @@ de:
         text_image_id: Bild im Text
         invert_title: Farben invertieren (Titel)
         invert_text: Farben invertieren (Text)
-
+        inline_text_position: Fließtextposition
         topasset_parallax: Parallax
         topasset_dim: Abblenden
+        sticky_inline_image: Bild an Seite haften
     values:
       "pageflow/page":
-        title_position:
-          left: Links
-          right: Rechts
+        text_position:
           center: Zentriert
         text_coverage:
           title_only: Nur Titel
           extend_into: Text ragt hinein
           banner: Banner
+        inline_text_position:
+          left: Links
+          right: Rechts
+          center: Zentriert

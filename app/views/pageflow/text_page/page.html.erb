@@ -1,5 +1,5 @@
 <div class="blackLayer"></div>
-<div class="content_and_background text_page text_position_<%= configuration['title_position'] %>">
+<div class="content_and_background text_page <% if configuration['sticky_inline_image'] %>sticky_inline_image<% end %> <%= content_image_present_css_class(configuration['background_image_id']) %>">
   <div class="backgroundArea">
     <%= background_image_div(configuration, 'background_image') %>
     <%= shadow_div :opacity => configuration['gradient_opacity'] %>
@@ -15,7 +15,8 @@
       </div>
     </div>
   </div>
-  <div class="content scroller inline_text_position_<%= configuration['text_position'] %> <% if configuration['invert_text'] %>invert_text<% end %>">
+  <div class="content scroller inline_text_position_<%= configuration['inline_text_position'] ? configuration['inline_text_position'] : 'left'  %> <% if configuration['invert_text'] %>invert_text<% end %>
+  ">
     <div>
       <div class="contentWrapper">
         <div class="page_spacer"></div>

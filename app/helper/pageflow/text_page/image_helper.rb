@@ -9,6 +9,11 @@ module Pageflow
           ''
         end
       end
+
+      def content_image_present_css_class(id)
+        image = Pageflow::ImageFile.find_by_id(id)
+        image ? '' : 'no_background_image'
+      end
     end
   end
 end

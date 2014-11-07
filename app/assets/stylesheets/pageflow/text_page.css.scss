@@ -4,26 +4,22 @@ $nav-bar-margin: 85px;
 
 $inverted-background-color: black;
 
-.page[data-template="text_page"], .js .page[data-template="text_page"] {
+@mixin pageflow-text-page-block-image {
+  @media screen and (max-width: 1400px) {
+    width: 38%;
+  }
+  @media screen and (max-width: 1100px) {
+    display: block;
+    position: static;
+    width: auto;
+    margin: 0 0 1em 0;
+    padding: 0;
+    float: none;
+    @content;
+  }
+}
 
-  .shadow {
-    @include shadow(#000);
-    pointer-events: none;
-  }
-  &.invert {
-    .shadow {
-      @include shadow(#fff);
-    }
-  }
-  .text_position_right .shadow {
-    @include shadow-right(#000);
-  }
-  &.invert .text_position_right  {
-    .shadow {
-      @include shadow-right(#fff);
-    }
-  }
-
+.page .text_page, .js .page .text_page, .js .page:first-child .text_page, .page:first-child .text_page {
 
   .backgroundArea {
 
@@ -31,11 +27,9 @@ $inverted-background-color: black;
       position: absolute;
       width: 100%;
       .page_header_wrapper {
-        padding: 200px 0 5% 8%;
-        width: 75%;
+        padding: 200px 12% 0% 8%;
         @include mobile {
-          padding: 85px 12% 5% 8%;
-          width: 100%;
+          padding: 85px 12% 0% 8%;
         }
 
         .page_header {
@@ -48,7 +42,7 @@ $inverted-background-color: black;
     }
   }
 
-  .scroller, &:first-child .scroller {
+  .scroller, .scroller {
     > div {
       padding: 0;
       position: relative;
@@ -58,7 +52,6 @@ $inverted-background-color: black;
       .contentInnerWrapper {
         position: relative;
         color: black;
-        /*font-size: 0.8em; */
 
         .content_background_layer {
           height: 100%;
@@ -110,6 +103,10 @@ $inverted-background-color: black;
 
         .contentText > * {
           margin: 0 auto;
+
+          @include phone {
+            margin: 0;
+          }
         }
 
         .contentText {
@@ -121,7 +118,7 @@ $inverted-background-color: black;
           box-sizing: content-box;
 
           @include phone {
-            max-width: 90%;
+            max-width: 84%;
             font-size: 1em;
           }
 
@@ -142,7 +139,7 @@ $inverted-background-color: black;
           }
 
           .inline_image {
-            width: 300px;
+            max-width: 400px;
             height: auto;
             background-size: cover;
             background-position: center;
@@ -150,7 +147,10 @@ $inverted-background-color: black;
             margin-left: 30px;
             margin-top: 0px;
             margin-bottom: 30px;
-            margin-right: -80px;
+            margin-right: -150px;
+
+            padding: 0;
+            margin-bottom: 30px;
 
             &.no_image_assigned {
               display: none;
@@ -189,35 +189,111 @@ $inverted-background-color: black;
         }
       }
     }
+
+    &.inline_text_position_left {
+      > div .contentInnerWrapper .contentText {
+        margin-left: 8%;
+        padding-right: 0;
+
+        .inline_image {
+          float: none;
+          position: absolute;
+          right: 0;
+          width: 45%;
+          margin-right: 8%;
+          max-width: initial;
+
+          @include pageflow-text-page-block-image;
+        }
+
+
+      }
+    }
+
+    &.inline_text_position_right {
+      > div .contentInnerWrapper .contentText {
+        margin-right: 12%;
+        padding-right: 0;
+
+        .inline_image {
+          float: none;
+          position: absolute;
+          left: 0;
+          width: 45%;
+          margin-left: 8%;
+          max-width: initial;
+
+          @include pageflow-text-page-block-image;
+        }
+      }
+    }
   }
 }
 
 .text_position_center, .text_position_right .text_position_center {
-  .shadow {
-    display: none !important;
-  }
-  .fixed_header_area {
-    display: none !important;
-  }
-  .contentInnerWrapper .page_header {
-    display: block !important;
-    max-width: initial;
-    margin-left: initial;
+  .text_page {
+    .shadow {
+      display: none !important;
+    }
+    .fixed_header_area {
+      display: none !important;
+    }
+    .contentInnerWrapper .page_header {
+      display: block !important;
+      max-width: initial;
+      margin-left: initial;
+    }
   }
 }
 
-.inline_text_position_right {
+.inline_text_position_center {
   .inline_image {
-    float: left !important;
-    margin-left: -80px !important;
-    margin-right: 30px !important;
+    float: right;
+    margin-right: -80px;
+    margin-left: 30px;
 
     @include phone {
-      float: none !important;
-      width: 100% !important;
-      margin: 1em 0 !important;
+      float: none;
+      width: 100%;
+      margin: 0 0 1em 0;
     }
   }
+}
+
+.page .text_page, .js .page .text_page, .js .page:first-child .text_page, .page:first-child .text_page {
+  &.content_and_background.sticky_inline_image .inline_text_position_center.scroller .contentWrapper {
+    .inline_image {
+      @media screen and (min-width: 1101px) {
+        position: absolute;
+        display: inline-block;
+        left: 50%;
+        margin: 0;
+        padding: 0;
+        width: 35% !important;
+        max-width: 500px;
+        margin-left: 50px;
+        padding-bottom: 2em;
+      }
+
+      @include pageflow-text-page-block-image;
+    }
+
+    .contentText {
+      @media screen and (min-width: 1101px) {
+        max-width: 1000px;
+        width: 84%;
+
+        h3, p {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+section.hide_title .fixed_header_area {
+  display: none;
+  height: 0;
 }
 
 .invert {
@@ -238,7 +314,7 @@ $inverted-background-color: black;
   }
 }
 
-.page[data-template="text_page"], .js .page[data-template="text_page"] {
+.page .text_page, .js .page .text_page {
   .scroller.invert_text {
     > div {
       .contentInnerWrapper {

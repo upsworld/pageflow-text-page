@@ -4,11 +4,14 @@ pageflow.pageType.register('text_page', _.extend({
 
   enhance: function(pageElement, configuration) {
     this.content = pageElement.find('.scroller');
+    this.scrollingDiv = pageElement.find('.scroller > div');
     this.pageSpacerElement = pageElement.find('.page_spacer');
     this.contentArea = pageElement.find('.contentText');
     this.backgroundArea = pageElement.find('.background');
+    this.inlineImage = pageElement.find('.inline_image');
+    this.inlineImageInitialOffset = pageElement.find('.contentText h3').position().top;
 
-    if(configuration.title_position == "left" || configuration.title_position == "right") {
+    if(configuration.text_position == "left" || configuration.text_position == "right") {
       this.titleArea = pageElement.find('.backgroundArea .fixed_header_area');
     }
     else {
@@ -18,17 +21,22 @@ pageflow.pageType.register('text_page', _.extend({
     this.resizePageSpacer(pageElement, configuration);
 
     pageElement.data('invertIndicator', !configuration.invert_text);
-    pageElement.on('scrollermove', this.applyBackgroundEffects.bind(this, pageElement, configuration));
+    this.content.scroller('onScroll', this.applyBackgroundEffects.bind(this, pageElement, configuration));
+    this.content.scroller('onScroll', this.applyInlineImageEffects.bind(this, pageElement, configuration));
   },
 
   applyBackgroundEffects: function(pageElement, configuration) {
-    var spacerPageRatio = this.pageSpacerElement.height() / pageElement.height();
-    var y = this.content.scroller('positionY');
+    var y = this.content.scroller('positionY'),
+      earlyDimOffset = pageElement.height() / 20,
+      titleOffset = configuration.text_position == "left" || configuration.text_position == "right" ? 0 : this.titleArea.height();
+      dimHeight = this.pageSpacerElement.height() - titleOffset - earlyDimOffset,
+      dimHeightTitle = this.pageSpacerElement.height() - earlyDimOffset,
+      spacerPageRatio = dimHeight / pageElement.height();
 
-    pageElement.find('.backgroundArea .fixed_header_area').css('opacity', (0.5 * pageElement.height() + y)/(pageElement.height() * 0.5)); // Abblenden des Titels, immer*/
+    pageElement.find('.backgroundArea .fixed_header_area').css('opacity', (0.6 * dimHeightTitle + y)/(dimHeightTitle * 0.6)); // Abblenden des Titels, immer*/
 
     if(configuration.topasset_dim) {
-      pageElement.find('.backgroundArea .background').css('opacity', (spacerPageRatio * pageElement.height() + y)/(pageElement.height() * spacerPageRatio)); // Abblenden */
+      pageElement.find('.backgroundArea .background').css('opacity', 1 - (-y / dimHeight)); // Abblenden */
     }
     else {
       pageElement.find('.backgroundArea .background').css('opacity', 1);
@@ -44,17 +52,40 @@ pageflow.pageType.register('text_page', _.extend({
     }
   },
 
-  resizePageSpacer: function(pageElement, configuration) {
-    if (configuration.text_coverage == 'banner') {
-      var bannerHeight = this.titleArea.outerHeight() > pageElement.height() / 3 ? this.titleArea.outerHeight() : pageElement.height() / 3;
-      this.pageSpacerElement.css('height', bannerHeight + 'px');
-    }
-    else if (configuration.text_coverage == 'title_only') {
-      this.pageSpacerElement.css('height', pageElement.height() + 'px');
+  applyInlineImageEffects: function(pageElement, configuration) {
+    if(configuration.sticky_inline_image) {
+      var y = this.content.scroller('positionY'),
+        calcMarginTop = this.inlineImage.outerHeight() < pageElement.height() ? (pageElement.height() - this.inlineImage.outerHeight()) / 2 : (pageElement.height() - this.inlineImage.outerHeight()),
+        limitToReach = calcMarginTop - this.inlineImageInitialTop;
+
+      if(y <= limitToReach) {
+        this.inlineImage.css('top', ((-y - this.inlineImageInitialTop + this.inlineImageInitialOffset + calcMarginTop)) + 'px');
+      }
+      else {
+        this.inlineImage.css('top', (this.inlineImageInitialOffset) + 'px');
+      }
     }
     else {
-      if (pageElement.height() - 200 > 200) {
-        this.pageSpacerElement.css('height', pageElement.height() - 200 + 'px');
+      this.inlineImage.css('top', (this.inlineImageInitialOffset) + 'px');
+    }
+  },
+
+  resizePageSpacer: function(pageElement, configuration) {
+    if(pageElement.find('.content_and_background').hasClass('no_background_image')) {
+      this.pageSpacerElement.css('height', this.titleArea.outerHeight() + 'px');
+    }
+    else {
+      if (configuration.text_coverage == 'banner') {
+        var bannerHeight = this.titleArea.outerHeight() > pageElement.height() / 3 ? this.titleArea.outerHeight() : pageElement.height() / 3;
+        this.pageSpacerElement.css('height', bannerHeight + 'px');
+      }
+      else if (configuration.text_coverage == 'title_only') {
+        this.pageSpacerElement.css('height', pageElement.height() + 'px');
+      }
+      else {
+        if (pageElement.height() - 200 > 200) {
+          this.pageSpacerElement.css('height', pageElement.height() - 200 + 'px');
+        }
       }
     }
 
@@ -65,7 +96,12 @@ pageflow.pageType.register('text_page', _.extend({
   },
 
   resize: function(pageElement, configuration) {
+    var y = this.content.scroller('positionY');
+
     this.resizePageSpacer(pageElement, configuration);
+    this.inlineImageInitialOffset = pageElement.find('.contentText h3').position().top;
+    this.inlineImageInitialTop = this.inlineImage.offset().top - this.scrollingDiv.offset().top;
+    this.applyInlineImageEffects(pageElement, configuration);
     this.applyBackgroundEffects(pageElement, configuration);
   },
 
@@ -77,8 +113,16 @@ pageflow.pageType.register('text_page', _.extend({
   },
 
   activating: function(pageElement, configuration) {
+    var y = this.content.scroller('positionY');
+
     this.resizePageSpacer(pageElement, configuration);
+    this.inlineImageInitialOffset = pageElement.find('.contentText h3').position().top;
+    this.inlineImage.css('top', this.inlineImageInitialOffset + 'px');
+    this.inlineImageInitialTop = this.inlineImage.offset().top - this.scrollingDiv.offset().top;
+
     this.applyBackgroundEffects(pageElement, configuration);
+
+    this.applyInlineImageEffects(pageElement, configuration);
   },
 
   activated: function(pageElement, configuration) {
@@ -89,6 +133,8 @@ pageflow.pageType.register('text_page', _.extend({
   deactivated: function(pageElement, configuration) {},
 
   update: function(pageElement, configuration) {
+    var y = this.content.scroller('positionY');
+
     pageElement.attr('data-template', 'text_page');
     pageElement.find('h2 .tagline').text(configuration.get('tagline') || '');
     pageElement.find('h2 .title').text(configuration.get('title') || '');
@@ -96,7 +142,11 @@ pageflow.pageType.register('text_page', _.extend({
     pageElement.find('.contentText .text_title').text(configuration.get('text_title') || '');
     pageElement.find('.contentText p').html(configuration.get('text') || '');
 
-    if(configuration.get('title_position') == "left" || configuration.get('title_position') == "right") {
+    pageElement.find('.content_and_background').toggleClass('no_background_image', configuration.getImageFile('background_image_id') == undefined);
+
+    pageElement.find('.content_and_background').toggleClass('sticky_inline_image', configuration.get('sticky_inline_image'));
+
+    if(configuration.get('text_position') == "left" || configuration.get('text_position') == "right") {
       this.titleArea = pageElement.find('.backgroundArea .fixed_header_area');
     }
     else {
@@ -106,11 +156,11 @@ pageflow.pageType.register('text_page', _.extend({
     this.updateCommonPageCssClasses(pageElement, configuration);
 
     _.forEach(pageflow.textPage.titlePositions, function(position) {
-      pageElement.find('.content_and_background').toggleClass('text_position_' + position, configuration.get('title_position') === position);
+      pageElement.toggleClass('text_position_' + position, configuration.get('text_position') === position);
     });
 
-    _.forEach(pageflow.Page.textPositions, function(position) {
-      pageElement.find('.content').toggleClass('inline_text_position_' + position, configuration.get('text_position') === position);
+    _.forEach(pageflow.textPage.inlineTextPositions, function(position) {
+      pageElement.find('.content').toggleClass('inline_text_position_' + position, configuration.get('inline_text_position') === position);
     });
 
     _.forEach(pageflow.textPage.textCoverageOptions, function(option) {
@@ -124,7 +174,12 @@ pageflow.pageType.register('text_page', _.extend({
       opacity: configuration.get('gradient_opacity') / 100
     });
 
+
     this.resizePageSpacer(pageElement, configuration.attributes);
+
+    this.inlineImageInitialOffset = pageElement.find('.contentText h3').position().top;
+    this.inlineImageInitialTop = this.inlineImage.offset().top - this.scrollingDiv.offset().top;
+    this.applyInlineImageEffects(pageElement, configuration.attributes);
     this.applyBackgroundEffects(pageElement, configuration.attributes);
   },
 

@@ -5,12 +5,12 @@ pageflow.textPage = pageflow.textPage || {};
 
 pageflow.ConfigurationEditorView.register('text_page', {
   configure: function () {
-    this.tab('general', function () {
+    this.tab('header', function () {
       this.input('title', pageflow.TextInputView, {required: true});
       this.input('hide_title', pageflow.CheckBoxInputView);
       this.input('tagline', pageflow.TextInputView);
       this.input('subtitle', pageflow.TextInputView);
-      this.input('title_position', pageflow.SelectInputView, {values: pageflow.textPage.titlePositions});
+      this.input('text_position', pageflow.SelectInputView, {values: pageflow.textPage.titlePositions});
       this.input('gradient_opacity', pageflow.SliderInputView);
       this.input('invert', pageflow.CheckBoxInputView);
     });
@@ -26,7 +26,8 @@ pageflow.ConfigurationEditorView.register('text_page', {
         imagePositioning: false
       });
       this.input('image_description', pageflow.TextInputView);
-      this.input('text_position', pageflow.SelectInputView, {values: pageflow.Page.textPositions});
+      this.input('inline_text_position', pageflow.SelectInputView, {values: pageflow.textPage.inlineTextPositions});
+      this.input('sticky_inline_image', pageflow.CheckBoxInputView);
     });
 
     this.tab('files', function () {
