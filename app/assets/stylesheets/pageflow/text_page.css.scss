@@ -291,9 +291,14 @@ $inverted-background-color: black;
   }
 }
 
-section.hide_title .fixed_header_area {
-  display: none;
-  height: 0;
+section.hide_title {
+  .fixed_header_area {
+    display: none;
+    height: 0;
+  }
+  .contentInnerWrapper .page_header {
+    border: 0;
+  }
 }
 
 .invert {
