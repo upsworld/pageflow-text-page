@@ -160,6 +160,9 @@ pageflow.pageType.register('text_page', _.extend({
       pageElement.toggleClass('text_position_' + position, configuration.get('text_position') === position);
     });
 
+    if(!configuration.get('inline_text_position')) {
+      pageElement.find('.content').addClass('inline_text_position_left');
+    }
     _.forEach(pageflow.textPage.inlineTextPositions, function(position) {
       pageElement.find('.content').toggleClass('inline_text_position_' + position, configuration.get('inline_text_position') === position);
     });
