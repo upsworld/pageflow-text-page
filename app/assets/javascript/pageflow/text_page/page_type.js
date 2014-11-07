@@ -9,7 +9,7 @@ pageflow.pageType.register('text_page', _.extend({
     this.contentArea = pageElement.find('.contentText');
     this.backgroundArea = pageElement.find('.background');
     this.inlineImage = pageElement.find('.inline_image');
-    this.inlineImageInitialOffset = pageElement.find('.contentText h3').position().top;
+    this.inlineImageInitialOffset = pageElement.find('.contentText h3').position().top + pageElement.find('.contentText h3').outerHeight();
 
     if(configuration.text_position == "left" || configuration.text_position == "right") {
       this.titleArea = pageElement.find('.backgroundArea .fixed_header_area');
@@ -116,7 +116,7 @@ pageflow.pageType.register('text_page', _.extend({
     var y = this.content.scroller('positionY');
 
     this.resizePageSpacer(pageElement, configuration);
-    this.inlineImageInitialOffset = pageElement.find('.contentText h3').position().top;
+    this.inlineImageInitialOffset = pageElement.find('.contentText h3').position().top + pageElement.find('.contentText h3').outerHeight();
     this.inlineImage.css('top', this.inlineImageInitialOffset + 'px');
     this.inlineImageInitialTop = this.inlineImage.offset().top - this.scrollingDiv.offset().top;
 
@@ -177,7 +177,7 @@ pageflow.pageType.register('text_page', _.extend({
 
     this.resizePageSpacer(pageElement, configuration.attributes);
 
-    this.inlineImageInitialOffset = pageElement.find('.contentText h3').position().top;
+    this.inlineImageInitialOffset = pageElement.find('.contentText h3').position().top + pageElement.find('.contentText h3').outerHeight();
     this.inlineImageInitialTop = this.inlineImage.offset().top - this.scrollingDiv.offset().top;
     this.applyInlineImageEffects(pageElement, configuration.attributes);
     this.applyBackgroundEffects(pageElement, configuration.attributes);
