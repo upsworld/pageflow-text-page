@@ -42,7 +42,7 @@ pageflow.pageType.register('text_page', _.extend({
       pageElement.find('.backgroundArea .background').css('opacity', 1);
     }
 
-    var parallaxPosition = y *0.05;
+    var parallaxPosition = y * 0.2;
 
     if(configuration.topasset_parallax) {
       pageElement.find('.backgroundArea .background').css({"-webkit-transform":"translateY(" + parallaxPosition + "px)", "-moz-transform":"translateY(" + parallaxPosition + "px)", "-ms-transform":"translateY(" + parallaxPosition + "px)", "-o-transform":"translateY(" + parallaxPosition + "px)", "transform":"translateY(" + parallaxPosition + "px)"}); // Parallax
@@ -160,12 +160,13 @@ pageflow.pageType.register('text_page', _.extend({
       pageElement.toggleClass('text_position_' + position, configuration.get('text_position') === position);
     });
 
-    if(!configuration.get('inline_text_position')) {
-      pageElement.find('.content').addClass('inline_text_position_left');
-    }
     _.forEach(pageflow.textPage.inlineTextPositions, function(position) {
       pageElement.find('.content').toggleClass('inline_text_position_' + position, configuration.get('inline_text_position') === position);
     });
+
+    if(!configuration.get('inline_text_position')) {
+      pageElement.find('.content').addClass('inline_text_position_left');
+    }
 
     _.forEach(pageflow.textPage.textCoverageOptions, function(option) {
       pageElement.toggleClass(option, configuration.get('text_coverage') === option);

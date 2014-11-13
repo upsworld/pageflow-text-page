@@ -6,7 +6,7 @@ de:
   editor:
     configuration_editor:
       tabs:
-        header: "Titelbereich"
+        header: "Titel"
         content: "Fließtext"
   activerecord:
     attributes:

@@ -13,10 +13,10 @@ pageflow.ConfigurationEditorView.register('text_page', {
       this.input('text_position', pageflow.SelectInputView, {values: pageflow.textPage.titlePositions});
       this.input('gradient_opacity', pageflow.SliderInputView);
       this.input('invert', pageflow.CheckBoxInputView);
+      this.input('text_coverage', pageflow.SelectInputView, {values: pageflow.textPage.textCoverageOptions});
     });
 
     this.tab('content', function () {
-      this.input('text_coverage', pageflow.SelectInputView, {values: pageflow.textPage.textCoverageOptions});
       this.input('text_title', pageflow.TextInputView);
       this.input('text', pageflow.TextAreaInputView);
       this.input('invert_text', pageflow.CheckBoxInputView);
