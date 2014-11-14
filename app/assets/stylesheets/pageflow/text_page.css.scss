@@ -5,10 +5,10 @@ $nav-bar-margin: 85px;
 $inverted-background-color: black;
 
 @mixin pageflow-text-page-block-image {
-  @media screen and (max-width: 1600px) {
-    width: 35%;
+  @include wide_desktop {
+    width: 42%;
   }
-  @media screen and (max-width: 1200px) {
+  @include narrow_desktop {
     display: block;
     position: static;
     width: auto;
@@ -199,14 +199,12 @@ $inverted-background-color: black;
           float: none;
           position: absolute;
           right: 0;
-          width: 42%;
+          width: 35%;
           margin-right: 8%;
           max-width: initial;
 
           @include pageflow-text-page-block-image;
         }
-
-
       }
     }
 
@@ -219,7 +217,7 @@ $inverted-background-color: black;
           float: none;
           position: absolute;
           left: 0;
-          width: 42%;
+          width: 35%;
           margin-right: auto;
           margin-left: 8%;
           max-width: initial;
@@ -264,19 +262,23 @@ $inverted-background-color: black;
 .page .text_page, .js .page .text_page, .js .page:first-child .text_page, .page:first-child .text_page {
   &.content_and_background.sticky_inline_image .inline_text_position_center.scroller .contentWrapper {
     .inline_image {
-      @media screen and (min-width: 1101px) {
-        position: absolute;
-        display: inline-block;
-        left: 50%;
-        margin: 0;
-        padding: 0;
-        width: 35% !important;
-        max-width: 500px;
-        margin-left: 50px;
-        padding-bottom: 2em;
-      }
+      position: absolute;
+      display: inline-block;
+      left: 50%;
+      width: 35%;
+      max-width: 500px;
+      margin: 0 0 0 50px;
+      padding: 0 0 2em 0;
 
-      @include pageflow-text-page-block-image;
+      @include narrow_desktop {
+        display: block;
+        position: static;
+        left: auto;
+        width: auto;
+        max-width: auto;
+        margin: 0 0 1em 0;
+        padding: 0;
+      }
     }
 
     .contentText {
@@ -291,37 +293,6 @@ $inverted-background-color: black;
     }
   }
 }
-
-section.hide_title {
-  .fixed_header_area {
-    display: none;
-    height: 0;
-  }
-  .contentInnerWrapper .page_header {
-    border: 0;
-  }
-}
-
-.hideText {
-  .text_page .shadow {
-    opacity: 0 !important;
-    -webkit-transition: 0.8s ease !important;
-    -moz-transition: 0.8s ease !important;
-    -ms-transition: 0.8s ease !important;
-    transition: 0.8s ease !important;
-    visibility: hidden;
-  }
-
-  .text_page .fixed_header_area .page_header_wrapper {
-    opacity: 0;
-  }
-
-  .text_page .content .contentWrapper {
-    @include transform(none);
-  }
-
-}
-
 
 .invert {
 
@@ -503,5 +474,34 @@ section.hide_title {
     .fixed_header_area .page_header_wrapper  {
       opacity: 0;
     }
+  }
+}
+
+section.hide_title {
+  .fixed_header_area {
+    display: none;
+    height: 0;
+  }
+  .contentInnerWrapper .page_header {
+    border: 0;
+  }
+}
+
+.hideText {
+  .text_page .shadow {
+    opacity: 0 !important;
+    -webkit-transition: 0.8s ease !important;
+    -moz-transition: 0.8s ease !important;
+    -ms-transition: 0.8s ease !important;
+    transition: 0.8s ease !important;
+    visibility: hidden;
+  }
+
+  .text_page .fixed_header_area .page_header_wrapper {
+    opacity: 0;
+  }
+
+  .text_page .content .contentWrapper {
+    @include transform(none);
   }
 }
