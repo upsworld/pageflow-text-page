@@ -10,6 +10,12 @@ pageflow.ConfigurationEditorView.register('text_page', {
       this.input('hide_title', pageflow.CheckBoxInputView);
       this.input('tagline', pageflow.TextInputView);
       this.input('subtitle', pageflow.TextInputView);
+      this.input('background_image_id', pageflow.FileInputView, {
+        collection: pageflow.imageFiles,
+        fileSelectionHandlerOptions: {
+          returnToTab: 'header'
+        }
+      });
       this.input('text_position', pageflow.SelectInputView, {values: pageflow.textPage.titlePositions});
       this.input('gradient_opacity', pageflow.SliderInputView);
       this.input('invert', pageflow.CheckBoxInputView);
@@ -33,17 +39,16 @@ pageflow.ConfigurationEditorView.register('text_page', {
       this.input('sticky_inline_image', pageflow.CheckBoxInputView);
     });
 
-    this.tab('files', function () {
-      this.input('background_image_id', pageflow.FileInputView, {collection: pageflow.imageFiles});
-      this.input('thumbnail_image_id', pageflow.FileInputView, {
-        collection: pageflow.imageFiles,
-        imagePositioning: false
-      });
-    });
-
     this.tab('options', function () {
       this.input('topasset_parallax', pageflow.CheckBoxInputView);
       this.input('topasset_dim', pageflow.CheckBoxInputView);
+      this.input('thumbnail_image_id', pageflow.FileInputView, {
+        collection: pageflow.imageFiles,
+        imagePositioning: false,
+        fileSelectionHandlerOptions: {
+          returnToTab: 'options'
+        }
+      });
       this.group('options');
     });
   }
