@@ -23,7 +23,10 @@ pageflow.ConfigurationEditorView.register('text_page', {
 
       this.input('text_image_id', pageflow.FileInputView, {
         collection: pageflow.imageFiles,
-        imagePositioning: false
+        imagePositioning: false,
+        fileSelectionHandlerOptions: {
+          returnToTab: 'content'
+        },
       });
       this.input('image_description', pageflow.TextInputView);
       this.input('inline_text_position', pageflow.SelectInputView, {values: pageflow.textPage.inlineTextPositions});
