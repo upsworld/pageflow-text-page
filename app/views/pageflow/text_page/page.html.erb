@@ -38,7 +38,7 @@
             <div class="inline_image <% if !configuration['text_image_id'] %>no_image_assigned<% end %>">
               <%= content_image(configuration['text_image_id'], configuration['image_description']) %>
               <% if configuration['image_description'] %>
-                <div class="inline_image_text"><span><%= configuration['image_description'] %></span></div>
+                <div class="inline_image_text"><% if !configuration['image_description'].blank? %><span><%= configuration['image_description'] %></span><% end %></div>
               <% end %>
             </div>
             <p>

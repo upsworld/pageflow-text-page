@@ -183,6 +183,7 @@ pageflow.pageType.register('text_page', _.extend({
     this.resizePageSpacer(pageElement, configuration.attributes);
 
     this.inlineImageInitialOffset = pageElement.find('.contentText h3').position().top + pageElement.find('.contentText h3').outerHeight();
+    this.inlineImage.css('top', this.inlineImageInitialOffset + 'px');
     this.inlineImageInitialTop = this.inlineImage.offset().top - this.scrollingDiv.offset().top;
     this.applyInlineImageEffects(pageElement, configuration.attributes);
     this.applyBackgroundEffects(pageElement, configuration.attributes);
