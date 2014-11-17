@@ -8,6 +8,13 @@ de:
       tabs:
         header: "Titel"
         content: "Fließtext"
+    inline_help:
+      "pageflow/page":
+        text_coverage: "Legt fest, ein wie großer Teil des Titelbildes initial zu sehen ist."
+        text_image_id: "Dieses Bild wird neben dem Text angezeigt."
+        sticky_inline_image: "Das Bild wird zunächst zusammen mit dem Text gescrollt, bleibt dann aber vertikal zentriert stehen, während der Text weiter scrollt."
+        topasset_parallax: "Titelbild abhängig von der Scroll-Position vertikal verschieben."
+        topasset_dim: "Titlebild abhängig von der Scroll-Position farblich abblenden."
   activerecord:
     attributes:
       "pageflow/page":

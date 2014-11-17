@@ -35,8 +35,8 @@ pageflow.ConfigurationEditorView.register('text_page', {
         },
       });
       this.input('image_description', pageflow.TextInputView);
-      this.input('inline_text_position', pageflow.SelectInputView, {values: pageflow.textPage.inlineTextPositions});
       this.input('sticky_inline_image', pageflow.CheckBoxInputView);
+      this.input('inline_text_position', pageflow.SelectInputView, {values: pageflow.textPage.inlineTextPositions});
     });
 
     this.tab('options', function () {
