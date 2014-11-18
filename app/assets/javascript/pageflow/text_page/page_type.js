@@ -21,7 +21,9 @@ pageflow.pageType.register('text_page', _.extend({
     this.resizePageSpacer(pageElement, configuration);
 
     pageElement.data('invertIndicator', !configuration.invert_text);
+
     this.content.scroller('onScroll', this.applyBackgroundEffects.bind(this, pageElement, configuration));
+    this.content.scroller('onScrollEnd', this.applyBackgroundEffects.bind(this, pageElement, configuration));
     this.content.scroller('onScroll', this.applyInlineImageEffects.bind(this, pageElement, configuration));
   },
 
