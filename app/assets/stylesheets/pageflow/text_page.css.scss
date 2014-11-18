@@ -319,6 +319,15 @@ $inverted-background-color: black;
 }
 
 .page .text_page, .js .page .text_page {
+   .scroller {
+    > div {
+      .contentText {
+        a {
+          color: black;
+        }
+      }
+    }
+  }
   .scroller.invert_text {
     > div {
       .contentInnerWrapper {
@@ -326,6 +335,12 @@ $inverted-background-color: black;
 
         .content_background_layer {
           background-color: black;
+        }
+      }
+
+      .contentText {
+        a {
+          color: white;
         }
       }
     }
