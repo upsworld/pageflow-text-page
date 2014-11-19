@@ -30,6 +30,7 @@ de:
         topasset_parallax: Parallax
         topasset_dim: Abblenden
         sticky_inline_image: Bild an Seite haften
+        prevent_fullscreen: Vollbildansicht ausschalten
     values:
       "pageflow/page":
         text_position:

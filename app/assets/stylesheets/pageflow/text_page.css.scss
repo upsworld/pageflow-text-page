@@ -10,11 +10,12 @@ $inverted-background-color: black;
   }
   @include narrow_desktop {
     display: block;
-    position: static;
+    position: relative;
+    top: 0 !important;
     width: auto;
     margin: 0 0 1em 0;
     padding: 0;
-    padding-right: 20px;
+    /*padding-right: 20px; */
     float: none;
     @content;
   }
@@ -149,6 +150,13 @@ $inverted-background-color: black;
             margin-top: 0px;
             margin-bottom: 20px;
             margin-right: -70px;
+            pointer-events: all;
+            cursor: default;
+            text-decoration: none;
+
+            &.allow_fullscreen {
+              cursor: pointer;
+            }
 
             padding: 0;
 
@@ -180,6 +188,44 @@ $inverted-background-color: black;
               span {
                 padding: 10px;
                 display: block;
+              }
+            }
+
+            &:before, &:after {
+              display: none;
+            }
+            div.bigscreen_toggler {
+              width: 30px;
+              height: 31px;
+              background-image: image-url('pageflow/text_page/fs_close_sprite.png');
+              background-position: 0 0;
+              background-repeat: no-repeat;
+              position: absolute;
+              background-color: none;
+              background-color: transparent;
+              top: 18px;
+              right: 18px;
+              color: transparent;
+              text-indent: -4000px;
+              opacity: 0;
+              cursor: pointer;
+              display: none;
+
+              @include transition(opacity 0.5s ease);
+
+              .has_mobile_platform & {
+                opacity: 1;
+              }
+
+            }
+
+            &.allow_fullscreen {
+              div.bigscreen_toggler {
+                display: block;
+              }
+
+              &:hover div.bigscreen_toggler {
+                opacity: 1;
               }
             }
           }
@@ -328,7 +374,7 @@ $inverted-background-color: black;
       }
     }
   }
-  .scroller.invert_text {
+  &.invert_text .scroller {
     > div {
       .contentInnerWrapper {
         color: white;
@@ -524,5 +570,85 @@ section.hide_title {
 
   .text_page .content .contentWrapper {
     @include transform(none);
+  }
+}
+
+.image_fullscreen_view {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  color: black;
+  background-color: white;
+  background-color: rgba(255, 255, 255, 0.95);
+  text-align: center;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: none;
+
+  .bigScreen & {
+    display: block;
+  }
+
+  .image_fullscreen_wrapper {
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    cursor: pointer;
+
+    .image_fullscreen_inner_wrapper {
+      position: relative;
+      display: block;
+      top: 50%;
+      @include transform(translate(0,-50%));
+
+      @include desktop {
+        margin-right: 85px;
+      }
+      @include pad_portrait {
+        margin-right: 0;
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        position: relative;
+      }
+    }
+
+    .inline_image_text {
+      position: absolute;
+      bottom: 0;
+      background-color: black;
+      color: white;
+      padding: 15px;
+      text-align: left;
+    }
+  }
+  .invert_text & {
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.95);
+  }
+}
+
+.js .page .close_button, .js .page.invert .close_button {
+  @include mobile {
+    display: none;
+  }
+
+  @include pad_portrait {
+    display: none;
+  }
+  &:before {
+    background-image: url(/assets/pageflow/close_text_invert.png);
+  }
+}
+
+.js .page .invert_text .close_button, .js .page.invert .invert_text .close_button {
+  &:before {
+    background-image: url(/assets/pageflow/close_text.png);
   }
 }

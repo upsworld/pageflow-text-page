@@ -10,6 +10,9 @@ pageflow.pageType.register('text_page', _.extend({
     this.backgroundArea = pageElement.find('.background');
     this.inlineImage = pageElement.find('.inline_image');
     this.inlineImageInitialOffset = pageElement.find('.contentText h3').position().top + pageElement.find('.contentText h3').outerHeight();
+    this.fullScreenLayer = pageElement.find('.image_fullscreen_view');
+
+    var that = this;
 
     if(configuration.text_position == "left" || configuration.text_position == "right") {
       this.titleArea = pageElement.find('.backgroundArea .fixed_header_area');
@@ -25,6 +28,20 @@ pageflow.pageType.register('text_page', _.extend({
     this.content.scroller('onScroll', this.applyBackgroundEffects.bind(this, pageElement, configuration));
     this.content.scroller('onScrollEnd', this.applyBackgroundEffects.bind(this, pageElement, configuration));
     this.content.scroller('onScroll', this.applyInlineImageEffects.bind(this, pageElement, configuration));
+
+    if(!pageflow.features.has('mobile platform')) {
+      $(this.inlineImage).on('click', function(e) {
+        if(!configuration.prevent_fullscreen){
+          $('body').toggleClass('bigScreen');
+          e.preventDefault();
+        }
+      });
+      $(this.fullScreenLayer).on('click', function() {
+        $('body').toggleClass('bigScreen');
+
+      });
+    }
+
   },
 
   applyBackgroundEffects: function(pageElement, configuration) {
@@ -131,7 +148,9 @@ pageflow.pageType.register('text_page', _.extend({
   activated: function(pageElement, configuration) {
   },
 
-  deactivating: function(pageElement, configuration) {},
+  deactivating: function(pageElement, configuration) {
+    $('body').removeClass('bigScreen');
+  },
 
   deactivated: function(pageElement, configuration) {},
 
@@ -170,11 +189,19 @@ pageflow.pageType.register('text_page', _.extend({
       pageElement.find('.content').addClass('inline_text_position_left');
     }
 
+    if(!configuration.get('prevent_fullscreen') && configuration.get('text_image_id')) {
+      this.inlineImage.attr('href', configuration.getImageFileUrl('text_image_id'));
+    }
+    else {
+      this.inlineImage.attr('href', '#');
+    }
+    this.inlineImage.toggleClass('allow_fullscreen', !configuration.get('prevent_fullscreen'));
+
     _.forEach(pageflow.textPage.textCoverageOptions, function(option) {
       pageElement.toggleClass(option, configuration.get('text_coverage') === option);
     });
 
-    pageElement.find('.content').toggleClass('invert_text', !!configuration.get('invert_text'));
+    pageElement.find('.content_and_background').toggleClass('invert_text', !!configuration.get('invert_text'));
     pageElement.data('invertIndicator', !configuration.get('invert_text'));
 
     pageElement.find('.shadow, .header_background_layer').css({
@@ -198,6 +225,13 @@ pageflow.pageType.register('text_page', _.extend({
         options: {propertyName: 'background_image_id'}
       },
       '.inline_image': {
+        view: pageflow.textPage.ContentImageEmbeddedView,
+        options: {
+          imagePropertyName: 'text_image_id',
+          descriptionPropertyName: 'image_description'
+        }
+      },
+      '.image_fullscreen_inner_wrapper': {
         view: pageflow.textPage.ContentImageEmbeddedView,
         options: {
           imagePropertyName: 'text_image_id',

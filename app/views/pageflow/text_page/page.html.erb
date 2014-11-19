@@ -1,5 +1,5 @@
 <div class="blackLayer"></div>
-<div class="content_and_background text_page <% if configuration['sticky_inline_image'] %>sticky_inline_image<% end %> <%= content_image_present_css_class(configuration['background_image_id']) %>">
+<div class="content_and_background text_page <% if configuration['sticky_inline_image'] %>sticky_inline_image<% end %> <%= content_image_present_css_class(configuration['background_image_id']) %> <% if configuration['invert_text'] %>invert_text<% end %>">
   <div class="backgroundArea">
     <%= background_image_div(configuration, 'background_image') %>
     <%= shadow_div :opacity => configuration['gradient_opacity'] %>
@@ -15,8 +15,7 @@
       </div>
     </div>
   </div>
-  <div class="content scroller inline_text_position_<%= configuration['inline_text_position'] ? configuration['inline_text_position'] : 'left'  %> <% if configuration['invert_text'] %>invert_text<% end %>
-  ">
+  <div class="content scroller inline_text_position_<%= configuration['inline_text_position'] ? configuration['inline_text_position'] : 'left'  %>">
     <div>
       <div class="contentWrapper">
         <div class="page_spacer"></div>
@@ -35,12 +34,14 @@
             <h3>
               <span class="text_title"><%= configuration['text_title'] %></span>
             </h3>
-            <div class="inline_image <% if !configuration['text_image_id'] %>no_image_assigned<% end %>">
+            <a <% if !configuration['prevent_fullscreen'] %> href="<%= fullscreen_image_url(configuration['text_image_id']) %>" target="_blank"<% else %> href="#" <% end %> class="inline_image <% if !configuration['text_image_id'] %>no_image_assigned<% end %>
+              <% if !configuration['prevent_fullscreen'] %>allow_fullscreen<% end %>">
               <%= content_image(configuration['text_image_id'], configuration['image_description']) %>
               <% if configuration['image_description'] %>
                 <div class="inline_image_text"><% if !configuration['image_description'].blank? %><span><%= configuration['image_description'] %></span><% end %></div>
               <% end %>
-            </div>
+              <div class="bigscreen_toggler" tabindex="4" title="Ansicht vergrößern bzw. verkleinern">Ansicht vergrößern bzw. verkleinern</div>
+            </a>
             <p>
               <%= raw configuration['text'] %>
             </p>
@@ -48,5 +49,16 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="image_fullscreen_view">
+    <div class="image_fullscreen_wrapper">
+      <div class="image_fullscreen_inner_wrapper">
+      <%= content_image_large(configuration['text_image_id'], configuration['image_description']) %>
+      <% if configuration['image_description'] %>
+        <div class="inline_image_text"><% if !configuration['image_description'].blank? %><span><%= configuration['image_description'] %></span><% end %></div>
+      <% end %>
+      </div>
+    </div>
+    <div class="close_button" tabindex="4" title="Vollbildansicht schliessen">Schließen</div>
   </div>
 </div>
