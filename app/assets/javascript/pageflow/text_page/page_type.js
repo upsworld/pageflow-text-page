@@ -47,7 +47,7 @@ pageflow.pageType.register('text_page', _.extend({
   applyBackgroundEffects: function(pageElement, configuration) {
     var y = this.content.scroller('positionY'),
       earlyDimOffset = pageElement.height() / 20,
-      titleOffset = configuration.text_position == "left" || configuration.text_position == "right" ? 0 : this.titleArea.height();
+      titleOffset = configuration.text_position == "left" || configuration.text_position == "right" ? 0 : this.titleArea.height(),
       dimHeight = this.pageSpacerElement.height() - titleOffset - earlyDimOffset,
       dimHeightTitle = this.pageSpacerElement.height() - earlyDimOffset,
       spacerPageRatio = dimHeight / pageElement.height();
@@ -164,7 +164,7 @@ pageflow.pageType.register('text_page', _.extend({
     pageElement.find('.contentText .text_title').text(configuration.get('text_title') || '');
     pageElement.find('.contentText p').html(configuration.get('text') || '');
 
-    pageElement.find('.content_and_background').toggleClass('no_background_image', configuration.getImageFile('background_image_id') == undefined);
+    pageElement.find('.content_and_background').toggleClass('no_background_image', !configuration.getImageFile('background_image_id'));
 
     pageElement.find('.content_and_background').toggleClass('sticky_inline_image', configuration.get('sticky_inline_image'));
 
