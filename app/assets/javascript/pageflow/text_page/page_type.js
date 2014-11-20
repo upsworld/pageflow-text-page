@@ -12,8 +12,6 @@ pageflow.pageType.register('text_page', _.extend({
     this.inlineImageInitialOffset = pageElement.find('.contentText h3').position().top + pageElement.find('.contentText h3').outerHeight();
     this.fullScreenLayer = pageElement.find('.image_fullscreen_view');
 
-    var that = this;
-
     if(configuration.text_position == "left" || configuration.text_position == "right") {
       this.titleArea = pageElement.find('.backgroundArea .fixed_header_area');
     }
@@ -24,10 +22,7 @@ pageflow.pageType.register('text_page', _.extend({
     this.resizePageSpacer(pageElement, configuration);
 
     pageElement.data('invertIndicator', !configuration.invert_text);
-
-    this.content.scroller('onScroll', this.applyBackgroundEffects.bind(this, pageElement, configuration));
-    this.content.scroller('onScrollEnd', this.applyBackgroundEffects.bind(this, pageElement, configuration));
-    this.content.scroller('onScroll', this.applyInlineImageEffects.bind(this, pageElement, configuration));
+    this.updateScrollEventListeners(pageElement, configuration);
 
     if(!pageflow.features.has('mobile platform')) {
       $(this.inlineImage).on('click', function(e) {
@@ -41,7 +36,24 @@ pageflow.pageType.register('text_page', _.extend({
 
       });
     }
+  },
 
+  updateScrollEventListeners: function(pageElement, configuration) {
+    var pageType = this;
+    pageType.storedConfiguration = configuration;
+
+    if (!pageType.scrollEventHandlerAdded) {
+      pageType.scrollEventHandlerAdded = true;
+
+      pageType.content.scroller('onScroll', function() {
+        pageType.applyBackgroundEffects(pageElement, pageType.storedConfiguration);
+        pageType.applyInlineImageEffects(pageElement, pageType.storedConfiguration);
+      });
+
+      pageType.content.scroller('onScrollEnd', function() {
+        pageType.applyBackgroundEffects(pageElement, pageType.storedConfiguration);
+      });
+    }
   },
 
   applyBackgroundEffects: function(pageElement, configuration) {
@@ -216,6 +228,7 @@ pageflow.pageType.register('text_page', _.extend({
     this.inlineImageInitialTop = this.inlineImage.offset().top - this.scrollingDiv.offset().top;
     this.applyInlineImageEffects(pageElement, configuration.attributes);
     this.applyBackgroundEffects(pageElement, configuration.attributes);
+    this.updateScrollEventListeners(pageElement, configuration.attributes);
   },
 
   embeddedEditorViews: function() {
