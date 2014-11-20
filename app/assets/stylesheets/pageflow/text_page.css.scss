@@ -180,6 +180,8 @@ $inverted-background-color: black;
               width: 100%;
               height: auto;
               display:block;
+              border: 0;
+              outline: 0;
             }
             div {
               background-color: black;
@@ -248,7 +250,7 @@ $inverted-background-color: black;
           right: 0;
           width: 35%;
           margin-right: 8%;
-          max-width: initial;
+          max-width: 42%;
 
           @include pageflow-text-page-block-image;
         }
@@ -267,7 +269,7 @@ $inverted-background-color: black;
           width: 35%;
           margin-right: auto;
           margin-left: 8%;
-          max-width: initial;
+          max-width: 42%;
 
           @include pageflow-text-page-block-image;
         }
