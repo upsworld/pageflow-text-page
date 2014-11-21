@@ -29,7 +29,7 @@ pageflow.ConfigurationEditorView.register('text_page', {
 
       this.input('text_image_id', pageflow.FileInputView, {
         collection: pageflow.imageFiles,
-        imagePositioning: false,
+        positioning: false,
         fileSelectionHandlerOptions: {
           returnToTab: 'content'
         },
