@@ -84,20 +84,30 @@ pageflow.pageType.register('text_page', _.extend({
   },
 
   applyInlineImageEffects: function(pageElement, configuration) {
-    if(configuration.sticky_inline_image) {
-      var y = this.content.scroller('positionY'),
-        calcMarginTop = this.inlineImage.outerHeight() < pageElement.height() ? (pageElement.height() - this.inlineImage.outerHeight()) / 2 : (pageElement.height() - this.inlineImage.outerHeight()),
-        limitToReach = calcMarginTop - this.inlineImageInitialTop;
+    if(pageElement.width() >= 700) {
+      if(configuration.sticky_inline_image) {
+        var y = this.content.scroller('positionY'),
+          calcMarginTop = this.inlineImage.outerHeight() < pageElement.height() ? (pageElement.height() - this.inlineImage.outerHeight()) / 2 : (pageElement.height() - this.inlineImage.outerHeight()),
+          limitToReach = calcMarginTop - this.inlineImageInitialTop;
 
-      if(y <= limitToReach) {
-        this.inlineImage.css('top', ((-y - this.inlineImageInitialTop + this.inlineImageInitialOffset + calcMarginTop)) + 'px');
+        if(y <= limitToReach) {
+          this.inlineImage.css('top', ((-y - this.inlineImageInitialTop + this.inlineImageInitialOffset + calcMarginTop)) + 'px');
+        }
+        else {
+          this.inlineImage.css('top', (this.inlineImageInitialOffset) + 'px');
+        }
       }
       else {
-        this.inlineImage.css('top', (this.inlineImageInitialOffset) + 'px');
+        if(configuration.inline_text_position == "center") {
+          this.inlineImage.css('top', '0px');
+        }
+        else {
+          this.inlineImage.css('top', (this.inlineImageInitialOffset) + 'px');
+        }
       }
     }
     else {
-      this.inlineImage.css('top', (this.inlineImageInitialOffset) + 'px');
+      this.inlineImage.css('top', '0px');
     }
   },
 
