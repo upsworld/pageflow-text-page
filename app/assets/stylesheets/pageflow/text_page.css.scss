@@ -659,3 +659,15 @@ section.hide_title {
     background-image: url(/assets/pageflow/close_text.png);
   }
 }
+
+.overview .ov_page {
+  &.text_page .pictogram {
+    background-image: image-url('pageflow/ov-text.png');
+  }
+}
+
+.navigation_mobile {
+  .text_page:after {
+    background-image: image-url('pageflow/text_sprite.png');
+  }
+}
