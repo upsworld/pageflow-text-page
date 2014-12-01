@@ -15,6 +15,9 @@ de:
         sticky_inline_image: "Das Bild wird zunächst zusammen mit dem Text gescrollt, bleibt dann aber vertikal zentriert stehen, während der Text weiter scrollt."
         topasset_parallax: "Titelbild abhängig von der Scroll-Position vertikal verschieben."
         topasset_dim: "Titlebild abhängig von der Scroll-Position farblich abblenden."
+        prevent_fullscreen: "Verhindert, dass das Fließtextbild bei Klick auf das Bild im Vollbild dargestellt wird."
+        text: "Dies ist der Bereich für den Fließtext dieser Seite. Dieser Seitentyp ist für lange Texte optimiert. Bei Kurztexten sollte auf andere Seitentypen zurückgegriffen werden."
+        invert_text: "Vertauscht Text- und Hintergrundfarbe im Fließtextbereich."
   activerecord:
     attributes:
       "pageflow/page":
@@ -24,8 +27,8 @@ de:
         text_coverage: Textabdeckung
         image_description: Bildunterschrift
         text_image_id: Bild im Text
-        invert_title: Farben invertieren (Titel)
-        invert_text: Farben invertieren (Text)
+        invert_title: Farben des Titelbereichs invertieren
+        invert_text: Farben des Textbereichs invertieren
         inline_text_position: Fließtextposition
         topasset_parallax: Parallax
         topasset_dim: Abblenden
