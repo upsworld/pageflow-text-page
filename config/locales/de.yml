@@ -1,7 +1,7 @@
 de:
   pageflow:
     text_page:
-      page_type_name: "Text Seite"
+      page_type_name: "Text"
 
   editor:
     configuration_editor:
