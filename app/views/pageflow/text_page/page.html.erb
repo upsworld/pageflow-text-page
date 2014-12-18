@@ -22,7 +22,7 @@
         <div class="contentInnerWrapper">
           <div class="content_background_layer"></div>
           <div class="page_header">
-            <div class="header_background_layer" style="opacity: <%= configuration['gradient_opacity'] %>"></div>
+            <div class="header_background_layer" style="opacity: <%= configuration['gradient_opacity'].to_i / 100.0 %>"></div>
             <h2>
               <span class="tagline"><%= configuration['tagline'] %></span>
               <span class="title"><%= configuration['title'] %></span>
