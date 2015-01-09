@@ -2,7 +2,7 @@ de:
   pageflow:
     text_page:
       page_type_name: "Text"
-
+      page_type_category_name: "Basic"
   editor:
     configuration_editor:
       tabs:
