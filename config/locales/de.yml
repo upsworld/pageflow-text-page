@@ -3,6 +3,7 @@ de:
     text_page:
       page_type_name: "Text"
       page_type_category_name: "Basic"
+      page_type_description: "Blogartig Seite für lange Texte"
   editor:
     configuration_editor:
       tabs:
