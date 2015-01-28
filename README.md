@@ -34,3 +34,9 @@ If you run into problems while installing the page type, please also refer to th
 page in the [Pageflow  repository](https://github.com/codevise/pageflow). If that 
 doesn't help, consider 
 [filing an issue](https://github.com/codevise/pageflow-text-page/issues).
+
+## Contributing Locales
+
+Edit the translations directly on the
+[ageflow-text-page](http://www.localeapp.com/projects/public?search=tf/pageflow-text-page)
+locale project.
