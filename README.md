@@ -11,7 +11,7 @@ Add this line to your application's `Gemfile`:
 Register the page type inside the configure block in `config/initializers/pageflow.rb`
 
     Pageflow.configure do |config|
-      config.register_page_type(Pageflow::TextPage::PageType.new)
+      config.register_page_type(Pageflow::TextPage.page_type)
     end
 
 Include javascripts and stylesheets:
