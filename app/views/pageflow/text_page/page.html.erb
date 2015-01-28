@@ -40,7 +40,7 @@
               <% if configuration['image_description'] %>
                 <div class="inline_image_text"><% if !configuration['image_description'].blank? %><span><%= configuration['image_description'] %></span><% end %></div>
               <% end %>
-              <div class="bigscreen_toggler" tabindex="4" title="Ansicht vergrößern bzw. verkleinern">Ansicht vergrößern bzw. verkleinern</div>
+              <div class="bigscreen_toggler" tabindex="4" title="<%= t('.fullscreen_title') %>"><%= t('.fullscreen') %></div>
             </a>
             <p>
               <%= raw configuration['text'] %>
@@ -59,6 +59,6 @@
       <% end %>
       </div>
     </div>
-    <div class="close_button" tabindex="4" title="Vollbildansicht schliessen">Schließen</div>
+    <div class="close_button" tabindex="4" title="<%= t('.close_title') %>"><%= t('.close') %></div>
   </div>
 </div>

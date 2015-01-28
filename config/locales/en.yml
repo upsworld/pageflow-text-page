@@ -1,0 +1,70 @@
+en:
+  activerecord:
+    attributes:
+      pageflow/page:
+        image_description: Image caption
+        inline_text_position: Text block position
+        invert_text: Invert text area colors
+        invert_title: Invert title area colors
+        prevent_fullscreen: Disable fullscreen
+        sticky_inline_image: Sticky image position
+        text_coverage: Text coverage
+        text_image_id: Inline image
+        text_titel: Title
+        text_title: Text title
+        title_position: Title position
+        topasset_dim: Header fade effect
+        topasset_parallax: Header parallax effect
+    values:
+      pageflow/page:
+        inline_text_position:
+          center: Center
+          left: Left
+          right: Right
+        text_coverage:
+          banner: Banner
+          extend_into: Text partially visible
+          title_only: Title area only
+        text_position:
+          center: Center
+  pageflow:
+    text_page:
+      help_entries:
+        page_type:
+          menu_item: Text
+          text: ! '# Text Page
+
+
+            Page for long texts
+
+
+            This page is especially designed for longer bodies of text on a neutral background. It offers  whole range of ´options design, which are comparable to the classical blog design (parallax) of sites like WordPress or Tumblr.
+
+
+            There are several options for arranging the title pictures and various ways of embedding another picture into the text body. Pictures within the text can move along with the text or can be fixed to a certain part of the page.
+
+
+            Examples of application: blog article, news article, interview'
+      page:
+        close: Close
+        close_title: Close
+        fullscreen: Fullscreen
+        fullscreen_title: View larger version
+      page_type_category_name: Basic
+      page_type_description: Longer texts with a banner image
+      page_type_name: Text Page
+    ui:
+      configuration_editor:
+        tabs:
+          content: Text area
+          header: Title area
+      inline_help:
+        pageflow/page:
+          invert_text: Switches text and background colors
+          prevent_fullscreen: Prevents the image from opening fullscreen on click
+          sticky_inline_image: The image scrolls with the text but eventually remains at a vertically centered position.
+          text: This is the main contents of the page. This page type is made for long texts. Use a different page type if your main content text is short.
+          text_coverage: Determines how much of the title image is visible initially.
+          text_image_id: This image is displayed alongside the text.
+          topasset_dim: Animate the opacity of the title image while scrolling down.
+          topasset_parallax: Translate the title image vertically while scrolling down.
