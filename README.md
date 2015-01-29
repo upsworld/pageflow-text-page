@@ -38,5 +38,5 @@ doesn't help, consider
 ## Contributing Locales
 
 Edit the translations directly on the
-[ageflow-text-page](http://www.localeapp.com/projects/public?search=tf/pageflow-text-page)
+[pageflow-text-page](http://www.localeapp.com/projects/public?search=tf/pageflow-text-page)
 locale project.
