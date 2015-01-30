@@ -641,7 +641,7 @@ section.hide_title {
   }
 }
 
-.js .page .close_button, .js .page.invert .close_button {
+.js .text_page .close_button, .js .invert .text_page .close_button {
   @include mobile {
     display: none;
   }
@@ -649,15 +649,16 @@ section.hide_title {
   @include pad_portrait {
     display: none;
   }
-  &:before {
-    background-image: url(/assets/pageflow/close_text_invert.png);
-  }
 }
 
-.js .page .invert_text .close_button, .js .page.invert .invert_text .close_button {
-  &:before {
-    background-image: url(/assets/pageflow/close_text.png);
-  }
+.js .text_page .close_button .label {
+  color: #2b2b2b;
+  text-shadow: 1px 1px 4px #fff;
+}
+
+.js .text_page.invert_text .close_button .label {
+  color: #FFFEFE;
+  text-shadow: 1px 1px 4px #2b2b2b;
 }
 
 .overview .ov_page {
