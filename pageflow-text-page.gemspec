@@ -2,9 +2,9 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "pageflow-text-page"
-  spec.version       = "0.0.1"
-  spec.authors       = ["Tim Fischbach"]
-  spec.email         = ["tfischbach@codevise.de"]
+  spec.version       = "0.1.0"
+  spec.authors       = ["Christoph Merkelbach"]
+  spec.email         = ["cmerkelbach@codevise.de"]
   spec.summary       = "Pageflow Page Type text pages"
   spec.homepage      = ""
   spec.license       = "MIT"
@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "pageflow"
+  spec.add_runtime_dependency 'pageflow', '~> 0.7'
 
   # Using translations from rails locales in javascript code.
   spec.add_runtime_dependency 'i18n-js'

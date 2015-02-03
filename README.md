@@ -1,5 +1,7 @@
 # Pageflow Text Page
 
+[![Gem Version](https://badge.fury.io/rb/pageflow-text-page.svg)](http://badge.fury.io/rb/pageflow-text-page)
+
 Page type to display large texts on a page.
 
 ## Installation
