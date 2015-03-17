@@ -66,7 +66,7 @@ pageflow.pageType.register('text_page', _.extend({
 
     pageElement.find('.backgroundArea .fixed_header_area').css('opacity', (0.6 * dimHeightTitle + y)/(dimHeightTitle * 0.6)); // Abblenden des Titels, immer*/
 
-    if(configuration.topasset_dim) {
+    if(!!configuration.topasset_dim) {
       pageElement.find('.backgroundArea .background').css('opacity', 1 - (-y / dimHeight)); // Abblenden */
     }
     else {
@@ -75,7 +75,7 @@ pageflow.pageType.register('text_page', _.extend({
 
     var parallaxPosition = y * 0.2;
 
-    if(configuration.topasset_parallax) {
+    if(!!configuration.topasset_parallax) {
       pageElement.find('.backgroundArea .background').css({"-webkit-transform":"translateY(" + parallaxPosition + "px)", "-moz-transform":"translateY(" + parallaxPosition + "px)", "-ms-transform":"translateY(" + parallaxPosition + "px)", "-o-transform":"translateY(" + parallaxPosition + "px)", "transform":"translateY(" + parallaxPosition + "px)"}); // Parallax
     }
     else {
