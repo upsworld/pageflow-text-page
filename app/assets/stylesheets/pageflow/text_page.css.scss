@@ -125,8 +125,6 @@ $inverted-background-color: black;
             font-size: 1em;
           }
 
-          padding-right: $nav-bar-margin;
-
           @include pad_portrait {
             padding-right: 0;
           }
@@ -164,7 +162,7 @@ $inverted-background-color: black;
             padding: 0;
 
             &.no_image_assigned {
-              display: none;
+              display: none !important;
             }
 
             @include phone {
@@ -344,7 +342,6 @@ $inverted-background-color: black;
 
         @include narrow_desktop {
           width: 500px;
-          padding-right: 20px;
         }
       }
     }
